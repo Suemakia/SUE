@@ -1845,8 +1845,7 @@ function ResultHandle(result) {
             }
         }
     }
-    const msg = result.match(/msg_start([\s\S
-    ]+?)msg_end/);
+    const msg = result.match(/msg_start([\s\S]+?)msg_end/);
     if (msg) {
         ok = true;
         let json = JsonYamlParse(msg[
