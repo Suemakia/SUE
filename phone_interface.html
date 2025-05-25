@@ -2250,8 +2250,7 @@ async function applyAllCharAndGroupBackgroundsOnLoad() {
     $(document).on("input",
     ".discord-thread-input-userinput", (e) => Discord_input(e));
     const message = System_TagCompletion(await ST.GetCurrentMessages());
-    let match = message.match(/msg_start([\s\S
-    ]+?)msg_end/);
+    let match = message.match(/msg_start([\s\S]+?)msg_end/);
     if (match) {
         console.log(`解析聊天记录!!!!!!!!!!!!!!!\n${match[
                 1
@@ -2268,8 +2267,7 @@ async function applyAllCharAndGroupBackgroundsOnLoad() {
             await QQ_Save_Msg();
         }
     }
-    const matches = message.matchAll(/moment_start([\s\S
-    ]+?)moment_end/g);
+    const matches = message.matchAll(/moment_start([\s\S]+?)moment_end/g);
     if (matches) {
         console.log(`解析动态内容!!!!!!!!!!!!!!!`);
         for (const m of matches) {
@@ -2278,8 +2276,7 @@ async function applyAllCharAndGroupBackgroundsOnLoad() {
             ].trim());
         }
     }
-    let discords = message.matchAll(/(?:discord_start|<discord>)([\S\s
-    ]+?)(?:discord_end|<\/discord>)/g);
+    let discords = message.matchAll(/(?:discord_start|<discord>)([\S\s]+?)(?:discord_end|<\/discord>)/g);
     if (discords) {
         console.log(`解析论坛内容!!!!!!!!!!!!!!!`);
         for (const discord of discords) {
@@ -2485,17 +2482,14 @@ function System_TagCompletion(content) {
     if (!content) {
         return "";
     }
-    content = content.replace(/<(?:think|thinking)>[\s\S
-    ]+?<\/(?:think|thinking)>/gi,
+    content = content.replace(/<(?:think|thinking)>[\s\S]+?<\/(?:think|thinking)>/gi,
     "");
-    let match = content.match(/moment_end[\s\S
-    ]*discord_start/);
+    let match = content.match(/moment_end[\s\S]*discord_start/);
     if (!match && content.indexOf("moment_end") > 0) {
         content = content.replace("moment_end",
         "moment_end\ndiscord_start");
     }
-    match = content.match(/MiPhone_start[\s\S
-    ]*msg_start/);
+    match = content.match(/MiPhone_start[\s\S]*msg_start/);
     if (!match && content.indexOf("msg_start") > 0) {
         content = content.replace("msg_start",
         "MiPhone_start\nmsg_start");
@@ -2740,12 +2734,7 @@ function Discord_Send(event) {
     ].scrollHeight);
 }
 function Discord_Parse(content) {
-    const matches = content.matchAll(/<([
-        0-9a-zA-Z
-    ]+)>([\s\S+
-    ]*?)<\/([
-        0-9a-zA-Z
-    ]+)>/g);
+    const matches = content.matchAll(/<([0-9a-zA-Z]+)>([\s\S+]*?)<\/([0-9a-zA-Z]+)>/g);
     if (!matches) {
         console.log(`论坛匹配失败,返回!`);
         return;
@@ -2765,8 +2754,7 @@ function Discord_AddCard(id, content) {
     let comment_list;
     let author = "";
     let map = new Map();
-    let match = content.match(/<正文>([\s\S+
-    ]+?)<\/正文>/);
+    let match = content.match(/<正文>([\s\S+]+?)<\/正文>/);
     if (!match) {
         console.log(`匹配正文标签失败\n${content
         }`);
@@ -2843,8 +2831,7 @@ function Discord_AddCard(id, content) {
     comment_list = $(`.discord-thread[data-id=${id
         }
     ]`).find(".discord-thread-comment-list");
-    match = content.match(/<评论>([\s\S+
-    ]+?)<\/评论>/);
+    match = content.match(/<评论>([\s\S+]+?)<\/评论>/);
     if (match) {
         let matches = match[
             1
@@ -3333,8 +3320,7 @@ function Simpleformat(content) {
         群聊: {}
     };
     // 添加私聊消息
-    let matches = content.matchAll(/<(.+?)和(.+?)的私聊>([\s\S
-    ]+?)<\/(.+?)和(.+?)的私聊>/g);
+    let matches = content.matchAll(/<(.+?)和(.+?)的私聊>([\s\S]+?)<\/(.+?)和(.+?)的私聊>/g);
     if (matches) {
         for (const match of matches) {
             if (match[
@@ -3389,8 +3375,7 @@ function Simpleformat(content) {
     // 添加群聊消息
     matches = content.matchAll(/<群聊[
         :：
-    ](.+?)>([\s\S
-    ]+?)<\/群聊[
+    ](.+?)>([\s\S]+?)<\/群聊[
         :：
     ](.+?)>/g);
     if (matches) {
@@ -3416,8 +3401,7 @@ function Simpleformat(content) {
             ].msgs = [];
             let m = match[
                 2
-            ].match(/<成员>([\S\s
-            ]+?)<\/成员>/);
+            ].match(/<成员>([\S\s]+?)<\/成员>/);
             if (m) {
                 let members = m[
                     1
@@ -3429,8 +3413,7 @@ function Simpleformat(content) {
             }
             m = match[
                 2
-            ].match(/<聊天内容>([\S\s
-            ]+?)<\/聊天内容>/);
+            ].match(/<聊天内容>([\S\s]+?)<\/聊天内容>/);
             if (m) {
                 for (let message of m[
                     1
@@ -3493,11 +3476,9 @@ function fixYamlSingleQuotes(yamlText) {
 }
 async function MiPhone_Merge() {
     let messages = await ST.GetCurrentMessages();
-    messages = messages.replace(/<(?:think|thinking)>[\s\S
-    ]+?<\/(?:think|thinking)>/gi,
+    messages = messages.replace(/<(?:think|thinking)>[\s\S]+?<\/(?:think|thinking)>/gi,
     "");
-    const matches = messages.matchAll(/MiPhone_start([\s\S
-    ]+?)MiPhone_end/g);
+    const matches = messages.matchAll(/MiPhone_start([\s\S]+?)MiPhone_end/g);
     if (!matches) {
         return;
     }
@@ -3516,8 +3497,7 @@ async function MiPhone_Merge() {
         ];
         console.log(`value:\n${value
         }`);
-        const msg = value.match(/msg_start([\s\S
-        ]+?)msg_end/);
+        const msg = value.match(/msg_start([\s\S]+?)msg_end/);
         if (msg) {
             let json;
             try {
@@ -3961,8 +3941,7 @@ async function LoadEmoji() {
         ]);
     }
     const keysArray = JSON.stringify(Array.from(QQ_emoji.keys()));
-    const m = phonebook.match(/<表情包列表>([\s\S
-    ]*?)<\/表情包列表>/);
+    const m = phonebook.match(/<表情包列表>([\s\S]*?)<\/表情包列表>/);
     if (m) {
         phonebook = phonebook.replace(m[
             0
@@ -4573,8 +4552,7 @@ function QQ_NickNameRepair(content) {
     let charlist = QQ_CharSettings.getAllSections();
     let result = [];
     for (let str of content) {
-        const match = str.match(/(.+?)--([\s\S
-    ]+)/);
+        const match = str.match(/(.+?)--([\s\S]+)/);
         if (match && match[
         1
     ] != UserName) {
