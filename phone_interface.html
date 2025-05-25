@@ -1793,8 +1793,7 @@ function ResultHandle(result) {
     result = System_TagCompletion(result);
     console.log(`开始对结果进行处理:\n${result
     }`);
-    const matches = [...result.matchAll(/MiPhone_start([\s\S]+?)MiPhone_end/g)
-    ];
+    const matches = [...result.matchAll(/MiPhone_start([\s\S]+?)MiPhone_end/g)];
     if (matches.length == 0) {
         triggerSlash('/echo AI没有回复线上格式,原文直接输出到新楼层');
         triggerSlash(`/sendas name={
