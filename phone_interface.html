@@ -3353,11 +3353,7 @@ function Simpleformat(content) {
         }
     }
     // 添加群聊消息
-    matches = content.matchAll(/<群聊[
-        :：
-    ](.+?)>([\s\S]+?)<\/群聊[
-        :：
-    ](.+?)>/g);
+    matches = content.matchAll(/<群聊[:：](.+?)>([\s\S]+?)<\/群聊[:：](.+?)>/g);
     if (matches) {
         for (const match of matches) {
             if (match[
