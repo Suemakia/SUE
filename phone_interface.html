@@ -2359,9 +2359,7 @@ if (nightModeToggleInput) {
         applyNightMode(this.checked); 
     });
     console.log('Night mode toggle event listener added.'); // 新增日志
-    } else {
-        console.error('Night mode toggle element (#night-mode-toggle) NOT FOUND in the DOM!'); // 如果没找到开关，报错
-    }
+    
 }
 // ... (init函数后面原有的其他代码，比如 await LoadRandomHead(); 等，继续) ...
     await LoadRandomHead();
