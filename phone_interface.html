@@ -1859,8 +1859,7 @@ function ResultHandle(result) {
         json = QQ_Msg_DeletOld(json);
         QQ_Msg_Parse(JSON.stringify(json));
     }
-    const momentes = result.matchAll(/moment_start([\s\S
-    ]+?)moment_end/g);
+    const momentes = result.matchAll(/moment_start([\s\S]+?)moment_end/g);
     if (momentes) {
         ok = true;
         for (const moment of momentes) {
