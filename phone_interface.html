@@ -3977,10 +3977,7 @@ async function LoadChars() {
             }
         }
         else {
-            const match = headurl.match(/[<{
-            ]+(.+?)[>
-            }
-        ]/);
+            const match = headurl.match(/[<{]+(.+?)[>}]/);
             if (match) {
                 if (hasGetCharAvatar) {
                     headurl = await getCharAvatarPath(match[
