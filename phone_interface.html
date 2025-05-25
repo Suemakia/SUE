@@ -1218,8 +1218,7 @@ async function QQ_Save_Msg() {
     let msg = Messages[
         0
     ].message;
-    const match = msg.match(/msg_start[\s\S
-    ]+?msg_end/);
+    const match = msg.match(/msg_start[\s\S]+?msg_end/);
     if (!match) {
         console.log(`匹配楼层记录失败`);
         return;
