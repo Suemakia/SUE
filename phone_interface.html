@@ -2939,9 +2939,7 @@ function Discord_AddCard_Old(id, content) {
             ];
             continue;
         }
-        match = str.match(/^(.+?)[
-            :：
-        ](.+)$/m);
+        match = str.match(/^(.+?)[:：](.+)$/m);
         if (match && comment_list && comment_list.length > 0) {
             const comment = _.template(discord_thread_comment)({
                 name: match[
