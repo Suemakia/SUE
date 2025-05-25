@@ -2685,8 +2685,7 @@ function Discord_EnterPress(e, element) {
     const result = `在帖子${id
     }中回复:\n${value
     }`;
-    triggerSlash(`/send ${result
-    }|/trigger`);
+    triggerSlash(`/send ${result}|/trigger`);
     $(element).val("").trigger("input");
     const commentlist = $closest.find(".discord-thread-comment-list");
     const comment = _.template(discord_discord_thread_comment)({
@@ -2711,8 +2710,7 @@ function Discord_Send(event) {
     const result = `在帖子${id
     }中回复:\n${value
     }`;
-    triggerSlash(`/send ${result
-    }|/trigger`);
+    triggerSlash(`/send ${result}|/trigger`);
     $closest.find(".discord-thread-input-userinput").val("").trigger("input");
     const commentlist = $closest.find(".discord-thread-comment-list");
     const comment = _.template(discord_discord_thread_comment)({
@@ -3282,8 +3280,7 @@ function JsonYamlParse(content) {content = content.replace(/\{\{user\}\}/g, User
         "\r\n    - ");
         content = content.replace(/\['/g,
             "\r\n    - '");
-        content = content.replace(/'\
-        ]/g,
+        content = content.replace(/'\]/g,
         "'");
         content = fixYamlSingleQuotes(content);
         //console.log(`第三次修复后的yaml文本:\n${content}`);
@@ -3436,8 +3433,7 @@ function Simpleformat(content) {
 }
 function fixYamlSingleQuotes(yamlText) {
     try {
-        return yamlText.replace(/(- ')(.*?[^\\
-        ])(')(?=\s*#|$)/gm, (match, prefix, content, suffix) => {
+        return yamlText.replace(/(- ')(.*?[^\\])(')(?=\s*#|$)/gm, (match, prefix, content, suffix) => {
             // 使用三步处理法保证已有转义不变
             const escaped = content
                 .replace(/''/g, '\uE000') // 步骤1：用临时Unicode占位符保存已有双引号
@@ -4099,13 +4095,10 @@ async function LoadChars() {
     }
     //console.log(`获取到的样式表:\n${$(`style[data-name='${section}']`).text()}`);
 }
-    const style = $("<style></style>").prop("type",
-"text/css");
+    const style = $("<style></style>").prop("type","text/css");
     const cssRule = chat_headraw_namespaceObject
-        .replace(/\$\{name\
-}/g, UserName)
-        .replace(/\$\{head\
-}/g, userAvatarPath);
+        .replace(/\$\{name\}/g, UserName)
+        .replace(/\$\{head\}/g, userAvatarPath);
     style.text(cssRule);
     $("head").append(style);
 }
@@ -4149,13 +4142,10 @@ function AddNewChar(name, head) {
 });
     $("#QQ_home_chars").append(html);
     QQ_pages.push(name);
-    const style = $("<style></style>").prop("type",
-"text/css");
+    const style = $("<style></style>").prop("type","text/css");
     const cssRule = chat_headraw_namespaceObject
-        .replace(/\$\{name\
-}/g, name)
-        .replace(/\$\{head\
-}/g, head);
+        .replace(/\$\{name\}/g, name)
+        .replace(/\$\{head\}/g, head);
     style.text(cssRule);
     $("head").append(style);
     //System_AddNpcHead(name, head);
@@ -4291,8 +4281,7 @@ function QQ_ChangeChatPage(event) {
  * @returns 聊天页HTML
  */
 function QQ_CreatChatPage(name) {
-    const html = chat_page.replace(/\$\{name\
-}/g, name);
+    const html = chat_page.replace(/\$\{name\}/g, name);
     console.log(`创建聊天页:${name
 }`);
     return html;
@@ -4554,8 +4543,7 @@ function QQ_NickNameRepair(content) {
                         if (!name) {
                             continue;
                     }
-                        if (name.match(/^\/(.+)\/([gimuy
-                    ]*)$/)) {
+                        if (name.match(/^\/(.+)\/([gimuy]*)$/)) {
                         // 名字是正则表达式
                             const regex = createRegExp(name);
                             if (!regex) {
@@ -4602,8 +4590,7 @@ function createRegExp(pattern) {
         return pattern;
     try {
     // 检查是否是 /pattern/flags 格式
-        const regexMatch = pattern.match(/^\/(.+)\/([gimuy
-    ]*)$/);
+        const regexMatch = pattern.match(/^\/(.+)\/([gimuy]*)$/);
         if (regexMatch) {
         // 提取正则表达式的模式和标志
             const [_, regexPattern, flags
@@ -5000,8 +4987,7 @@ async function QQ_Moment_Comment(event) {
     { class: "user_leave_message"
     });
     messageDiv.html(`<span><strong>${UserName
-    }</strong>：${value
-    }</span>`);
+    }</strong>：${value}</span>`);
     list.append(messageDiv);
     input.val("");
     const sendvalue = `回复${name
@@ -5039,8 +5025,7 @@ function QQ_Moment_Parse(content) {
             let message = match[
                 2
             ];
-            const matches = message.matchAll(/\[img-(.+?)\
-            ]/g);
+            const matches = message.matchAll(/\[img-(.+?)\]/g);
             if (matches) {
                 for (const m of matches) {
                     message = message.replace(m[
@@ -5236,12 +5221,9 @@ function QQ_Chat_AddUserMsg(element, msg) {
  * @returns 处理后的消息
  */
 function QQ_Chat_SpecialMsg(msg, username, isgroup, mysend) {
-    const match = msg.match(/\[(.+?)[\|-
-        ](.+?)\
-    ]/);
+    const match = msg.match(/\[(.+?)[\|-](.+?)\]/);
     const xxx = msg.match(/(.+?)\[/);
-    const xx = msg.match(/\
-    ](.+)/);
+    const xx = msg.match(/\](.+)/);
     let additionalText = "";
     if (xxx) {
         additionalText = xxx[
@@ -5358,8 +5340,7 @@ function QQ_Chat_SpecialMsg(msg, username, isgroup, mysend) {
     return "";
 }
 function QQ_MySendSpecial(content) {
-    let match = content.match(/\[?(.+?)-(.+?)
-    ]?$/m);
+    let match = content.match(/\[?(.+?)-(.+?)]?$/m);
     if (match) {
         let type = match[
             1
