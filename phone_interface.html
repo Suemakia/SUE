@@ -4004,9 +4004,7 @@ async function LoadChars() {
             ].members = QQ_CharSettings
                     .readValue(section,
             "成员")
-                    .split(/[
-                ,，
-            ]/g);
+                    .split(/[,，]/g);
         }
             else {
                 QQ_msgjson.私聊[`${UserName
