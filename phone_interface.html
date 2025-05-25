@@ -1824,9 +1824,7 @@ function ResultHandle(result) {
         // 自动补全tag
         if (result.indexOf("msg_start") < 0) {
             // 没有起始标识
-            let start = result.match(/MiPhone_start[\s\S
-            ]*?(<群聊:.+?>|<[^/
-            ]+和.+的(?:聊天|私聊)>)/);
+            let start = result.match(/MiPhone_start[\s\S]*?(<群聊:.+?>|<[^/]+和.+的(?:聊天|私聊)>)/);
             if (start) {
                 result = result.replace(start[
                     1
