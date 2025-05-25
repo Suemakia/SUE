@@ -2854,10 +2854,7 @@ function Discord_AddCard(id, content) {
     }
 }
 function AtMessage(content) {
-    const match = content.match(/(@.{
-        1,
-        8
-    }?) /);
+    const match = content.match(/(@.{1,8}?) /);
     if (match) {
         content = content.replace(match[
             1
