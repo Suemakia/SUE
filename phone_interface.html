@@ -3221,8 +3221,7 @@ function Http_Get(url) {
     });
 }
 function JsonYamlParse(content) {
-    content = content.replace(/\{\{user\
-        }\
+    content = content.replace(/\{\{user\}\
     }/g, UserName);
     try {
         let json = JSON.parse(content);
