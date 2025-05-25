@@ -2775,8 +2775,7 @@ function Discord_AddCard(id, content) {
     }
     console.log(`匹配到论坛内容:\n${JSON.stringify(Object.fromEntries(map))
     }`);
-    let img = map.get("帖子配图描述")?.match(/\[img-(.+?)\
-    ]/);
+    let img = map.get("帖子配图描述")?.match(/\[img-(.+?)\]/);
     if (img) {
         map.set("帖子配图描述", img[
             1
