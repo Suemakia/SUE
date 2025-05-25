@@ -2756,9 +2756,7 @@ function Discord_AddCard(id, content) {
     }
     let matches = match[
         1
-    ].matchAll(/(.+?)[
-        :：
-    ]\s*(.+)/g);
+    ].matchAll(/(.+?)[:：]\s*(.+)/g);
     for (const m of matches) {
         if (m[
             1
