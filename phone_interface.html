@@ -3220,9 +3220,7 @@ function Http_Get(url) {
         });
     });
 }
-function JsonYamlParse(content) {
-    content = content.replace(/\{\{user\}\
-    }/g, UserName);
+function JsonYamlParse(content) {content = content.replace(/\{\{user\}\}/g, UserName);
     try {
         let json = JSON.parse(content);
         return json;
